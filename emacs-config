@@ -1,0 +1,80 @@
+(require 'package) ;; You might already have this line
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+		                                    (not (gnutls-available-p))))
+                     (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+      (add-to-list 'package-archives (cons "melpa" url) t))
+(when (< emacs-major-version 24)
+      ;; For important compatibility libraries like cl-lib
+            (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+;; Start-up with soft-wrap enabled
+(setq org-startup-truncated nil)  
+
+;;word wrap, lepsza wersja
+(setq-default word-wrap t)
+
+(add-hook 'c-mode-common-hook (lambda ()
+				      (local-set-key (kbd "RET") 'newline-and-indent)))
+
+(menu-bar-mode -1)
+
+(tool-bar-mode -1)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+;;neotree
+(add-to-list 'package-archives
+'("melpa" . "http://melpa.org/packages/"))
+
+;;neotree configuration
+(add-to-list 'load-path "/some/path/neotree")
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+;; żeby był eksport do markdwon w org-mode
+(require 'ox-md nil t)
+
+;;zmiana czcionki na SpaceMono
+;;(set-frame-font "SpaceMono 10" nil t)
+
+;;zmiana rozmiaru okna
+(global-set-key (kbd "<C-up>") 'shrink-window)
+(global-set-key (kbd "<C-down>") 'enlarge-window)
+(global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
+(global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
+
+(fringe-mode 0)        ; Turn off left and right fringe cols. 
+
+;;tylko dla maca
+;;(setq mac-option-key-is-meta t)
+;;(setq mac-right-option-modifier nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (treemacs-evil treemacs writeroom-mode web-mode php-mode markdown-mode))))
+
+
