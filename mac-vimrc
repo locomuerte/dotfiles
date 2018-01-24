@@ -1,0 +1,70 @@
+syntax on
+set autoindent
+set mouse=a
+set linebreak
+set wrap
+"colorscheme monokai
+syntax enable 
+let g:vim_markdown_no_default_key_mapping=1
+set conceallevel=2
+setlocal spell spelllang=pl
+
+""tylo dla maca i macvia
+set guifont=Menlo:h14
+
+set nocompatible              " be iMproved
+filetype off                  " required
+
+" set the runtime path to include Vundle an
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle s
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different f
+" Keep Plugin commands between vundle#begin
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/sc
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git
+" git repos on your local machine (i.e. whe
+Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirecto
+" Pass the path to set the runtimepath prop
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before 
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead 
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plug
+" :PluginInstall    - installs plugins; app
+" :PluginSearch foo - searches for foo; app
+" :PluginClean      - confirms removal of u
+"
+" see :h vundle for more details or wiki fo
+" Put your non-Plugin stuff after this line
+
+Plugin 'junegunn/goyo.vim'
+
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-airline/vim-airline'
+
+
+colorscheme molokai "madeofcode
+set background=dark
+map <F9> :Goyo<CR>
+map <F6> :setlocal spell! spelllang=pl<CR>
